@@ -65,7 +65,7 @@ class FavotiteDetaile : AppCompatActivity() {
         //イメージ画像をBitmapに変換して表示するクラスを呼び出す
         if(networkCapabilities != null) {
             val imageTask: RestaurantDetail.GetImage = RestaurantDetail.GetImage(photoimage)
-            imageTask.execute(photo)
+            imageTask.execute(photo)    //写真を表示
         }
     }
 
