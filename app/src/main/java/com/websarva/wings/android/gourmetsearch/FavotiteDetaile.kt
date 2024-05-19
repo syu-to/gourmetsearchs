@@ -66,7 +66,6 @@ class FavotiteDetaile : AppCompatActivity() {
         if(networkCapabilities != null) {
             val imageTask: RestaurantDetail.GetImage = RestaurantDetail.GetImage(photoimage)
             imageTask.execute(photo)
-
         }
     }
 
