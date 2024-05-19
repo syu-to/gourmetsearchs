@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GourmetSearch">
-        <activity android:name=".StoreNameSearch"></activity>
+        <activity android:name=".StoreNameList"></activity>
+        <activity android:name=".StoreNameSearch" />
         <activity android:name=".FavotiteDetaile" />
         <activity android:name=".FavotiteList" />
         <activity android:name=".RestaurantDetail" />
