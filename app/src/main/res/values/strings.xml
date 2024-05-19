@@ -15,4 +15,7 @@
     <string name="midnight">23時以降も営業している</string>
     <string name="Favotitedelete">キニナル削除</string>
     <string name="genre">ジャンル未選択</string>
+    <string name="KyeWord">キーワード入力</string>
+    <string name="locationSearch">現在地からレストラン検索</string>
+    <string name="storenamesearch">店名検索</string>
 </resources>

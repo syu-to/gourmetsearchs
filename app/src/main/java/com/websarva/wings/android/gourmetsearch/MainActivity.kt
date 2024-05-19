@@ -16,6 +16,8 @@ class MainActivity : AppCompatActivity() {
         SearchButton.setOnClickListener(listener)       //リスナ設定
         val favotiteButton = findViewById<Button>(R.id.favotitebutton)
         favotiteButton.setOnClickListener(listener)
+        val storenamesearchbutton = findViewById<Button>(R.id.storenamesearchbutton)
+        storenamesearchbutton.setOnClickListener(listener)
     }
 
     //ボタンクリックのリスナクラス
@@ -29,6 +31,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.favotitebutton->{
                     val intent = Intent(this@MainActivity,FavotiteList::class.java)
+                    startActivity(intent)   //飛ぶ
+                }
+                R.id. storenamesearchbutton->{
+                    val intent = Intent(this@MainActivity,StoreNameSearch::class.java)
                     startActivity(intent)   //飛ぶ
                 }
             }
