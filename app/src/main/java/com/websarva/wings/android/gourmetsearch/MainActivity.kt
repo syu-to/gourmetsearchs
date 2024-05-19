@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        println("KotlinVersion >> " + KotlinVersion.CURRENT)
         val listener = TopListener()
         val SearchButton = findViewById<Button>(R.id.searchbutton)  //サーチボタンオブジェクトの取得
         SearchButton.setOnClickListener(listener)       //リスナ設定
