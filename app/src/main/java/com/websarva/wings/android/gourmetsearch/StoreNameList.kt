@@ -1,8 +1,11 @@
 package com.websarva.wings.android.gourmetsearch
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ListView
 import android.widget.SimpleAdapter
 import androidx.annotation.UiThread
@@ -146,6 +149,7 @@ class StoreNameList : AppCompatActivity() {
                     val adapter =
                         SimpleAdapter(this@StoreNameList, alllist, android.R.layout.simple_list_item_activated_2, from, to)
                     storenameList.adapter = adapter
+                    storenameList.onItemClickListener = ListItemclickListener()
                 } else {
                     Snackbar.make(
                         storenameList,
@@ -177,6 +181,20 @@ class StoreNameList : AppCompatActivity() {
                 .setAction("戻る") { finish() }  //戻るボタン
                 .setActionTextColor(Color.BLUE)   //テキストカラー
                 .show()
+        }
+    }
+
+    private inner class ListItemclickListener : AdapterView.OnItemClickListener{
+        override fun onItemClick(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+            val item = parent.getItemAtPosition(position) as MutableMap<String,String>
+            //レストラン名と住所と最寄り駅の取得
+            var id = item["id"]
+            //インテリテントオブジェクトを生成
+            var intents = Intent(this@StoreNameList,StoreNamedetail::class.java)
+            //レストラン詳細画面に送るデータを格納
+            intents.putExtra("id",id)
+            //レストラン詳細画面の起動
+            startActivity(intents)
         }
     }
 }
