@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">gourmet search</string>
+    <string name="search">検索</string>
+    <string name="radiussearch">半径検索(m)</string>
+    <string name="title">グルメサーチ</string>
+    <string name="searchbutton">レストラン検索</string>
+    <string name="restaurantname">レストラン名</string>
+    <string name="address">住所</string>
+    <string name="station">最寄り駅</string>
+    <string name="open" />
+    <string name="Open">営業時間</string>
+    <string name="initial">300m</string>
+    <string name="favotite">キニナル</string>
+    <string name="favotiteButton">キニナル一覧</string>
+    <string name="midnight">23時以降も営業している</string>
+    <string name="Favotitedelete">キニナル削除</string>
+    <string name="genre">ジャンル未選択</string>
+</resources>
