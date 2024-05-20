@@ -1,18 +1,24 @@
 package com.websarva.wings.android.gourmetsearch
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.UiThread
 import androidx.annotation.WorkerThread
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
+import io.realm.Realm
+import io.realm.kotlin.createObject
+import io.realm.kotlin.where
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.IOException
@@ -21,6 +27,7 @@ import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.SocketTimeoutException
 import java.net.URL
+import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 import java.util.concurrent.Callable
 import java.util.concurrent.Executors
@@ -31,6 +38,14 @@ class StoreNamedetail : AppCompatActivity() {
         private const val RESTAURANT_URL = "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/" //APIのアドレス
         private const val API_ID = "59c533b8ba2a26ed"   //APIキー
     }
+    private  lateinit var realm: Realm
+    var name = ""
+    var address = ""
+    var station = ""
+    var photo = ""
+    var open = ""
+    var logo_image = ""
+    var access = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_store_namedetail)
@@ -40,6 +55,37 @@ class StoreNamedetail : AppCompatActivity() {
         val urlFull = "${StoreNamedetail.RESTAURANT_URL}?key=${StoreNamedetail.API_ID}&id=$id&format=json"
         println(urlFull)
         ShopDetaileInfo(urlFull)
+
+        val listener = ShopListener()
+        val favorite = findViewById<Button>(R.id.Shopfavorite)  //サーチボタンオブジェクトの取得
+        favorite.setOnClickListener(listener)       //リスナ設定
+    }
+
+    private inner class ShopListener : View.OnClickListener{
+        override fun onClick(view: View) {
+            //idのR値に応じて処理を分岐する
+            when(view.id){
+                R.id.Shopfavorite->{
+                    realm = Realm.getDefaultInstance()  //Realmのデフォルトインスタンス
+                    realm.executeTransaction { db: Realm ->
+                        val maxId = db.where<favorite>().max("id")  // 現在の最大IDを取得
+                        val nextId = (maxId?.toLong() ?: 0L) + 1L
+                        val favorite = db.createObject<favorite>(nextId)
+                        favorite.name = name
+                        favorite.address = address
+                        favorite.station = station
+                        favorite.open = open
+                        favorite.photo = photo
+                        favorite.image = logo_image
+                        favorite.access = access
+                    }
+                    Snackbar.make(view, "追加しました", Snackbar.LENGTH_SHORT)    //バーで追加したことを知らせる
+                        .setAction("戻る") { finish() }  //戻るボタン
+                        .setActionTextColor(Color.BLUE)   //テキストカラー
+                        .show()
+                }
+            }
+        }
     }
 
     @UiThread
@@ -111,11 +157,13 @@ class StoreNamedetail : AppCompatActivity() {
         if(ShopJSONArray.length() != 0) {
         var ShopJSON = ShopJSONArray.getJSONObject(0)
 
-            var name = ShopJSON.getString("name")
-            var address = ShopJSON.getString("address")
-            var station = ShopJSON.getString("station_name")
-            var open = ShopJSON.getString("open")
-            var photo = ShopJSON.getJSONObject("photo").getJSONObject("mobile").getString("l")
+            name = ShopJSON.getString("name")
+            address = ShopJSON.getString("address")
+            station = ShopJSON.getString("station_name")
+            open = ShopJSON.getString("open")
+            photo = ShopJSON.getJSONObject("photo").getJSONObject("mobile").getString("l")
+            logo_image = ShopJSON.getString("logo_image")
+            access = ShopJSON.getString("access")
             val Shopname = findViewById<TextView>(R.id.ShoprestaurantnameTextView)
             Shopname.text = name
             val Shopaddress = findViewById<TextView>(R.id.ShopaddressTextView)
@@ -161,6 +209,15 @@ class StoreNamedetail : AppCompatActivity() {
         }
     }
     fun onShopMapButtonClick(view: View){
-
+        //店の名前をURLエンコードで取得
+        val SearchWord = URLEncoder.encode(address,"UTF-8")
+        //マップアプリと連携するURI文字列作成
+        val uriStr = "geo:0,0?q=${SearchWord}"
+        //URI文字列からURIオブジェクトを生成
+        val uri = Uri.parse(uriStr)
+        //Intentオブジェクトを生成
+        val intent = Intent(Intent.ACTION_VIEW,uri)
+        //アクティビティ起動
+        startActivity(intent)
     }
 }

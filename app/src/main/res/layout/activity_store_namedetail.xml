@@ -125,13 +125,13 @@
         app:layout_constraintGuide_begin="349dp" />
 
     <Button
-        android:id="@+id/Shopdelete2"
+        android:id="@+id/Shopfavorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:backgroundTint="#FFEB3B"
-        android:text="@string/Favotitedelete"
+        android:text="@string/favotite"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -143,7 +143,7 @@
         android:layout_marginTop="8dp"
         android:backgroundTint="@color/teal_200"
         android:onClick="onShopMapButtonClick"
-        app:layout_constraintEnd_toStartOf="@+id/Shopdelete2"
+        app:layout_constraintEnd_toStartOf="@+id/Shopfavorite"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_dialog_map" />
 </androidx.constraintlayout.widget.ConstraintLayout>

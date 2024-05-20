@@ -2,6 +2,7 @@ package com.websarva.wings.android.gourmetsearch
 
 import android.content.Intent
 import android.graphics.Color
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -11,6 +12,7 @@ import android.widget.SimpleAdapter
 import androidx.annotation.UiThread
 import androidx.annotation.WorkerThread
 import androidx.appcompat.app.AppCompatActivity
+import androidx.paging.*
 import com.google.android.material.snackbar.Snackbar
 import org.json.JSONObject
 import java.io.BufferedReader
@@ -31,6 +33,7 @@ class StoreNameList : AppCompatActivity() {
         private const val API_ID = "59c533b8ba2a26ed"   //APIキー
     }
 
+
     var keyword = ""
     var prefectures = ""
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,9 +46,22 @@ class StoreNameList : AppCompatActivity() {
         val keywordByte = URLEncoder.encode(keyword, StandardCharsets.UTF_8.toString())
         val prefecturesByte = URLEncoder.encode(prefectures, StandardCharsets.UTF_8.toString())
 
-        val urlFull = "${StoreNameList.RESTAURANT_URL}?key=${StoreNameList.API_ID}&keyword=${keywordByte}%2C${prefecturesByte}&count=30&format=json"
-        println(urlFull)
-        ShopInfo(urlFull)
+        val connectivityManager = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkCapabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+        if(networkCapabilities != null) {
+            val urlFull =
+                "${StoreNameList.RESTAURANT_URL}?key=${StoreNameList.API_ID}&keyword=${keywordByte}%2C${prefecturesByte}&count=30&format=json"
+            println(urlFull)
+            ShopInfo(urlFull)
+        }
+        else
+        {
+            val shopList = findViewById<ListView>(R.id.storenamelist)
+            Snackbar.make(shopList, "Wi-Fiに接続出来ません。", Snackbar.LENGTH_SHORT)    //バーで追加したことを知らせる
+                .setAction("戻る") { finish() }  //戻るボタン
+                .setActionTextColor(Color.BLUE)   //テキストカラー
+                .show()
+        }
 
     }
 
@@ -197,4 +213,5 @@ class StoreNameList : AppCompatActivity() {
             startActivity(intents)
         }
     }
+
 }

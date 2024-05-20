@@ -36,6 +36,8 @@ class restaurantlist : AppCompatActivity() {
         private const val RESTAURANT_URL = "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/" //APIのアドレス
         private const val API_ID = "59c533b8ba2a26ed"   //APIキー
     }
+
+
     var count = 0
     var radiusText = ""
     var midnight_check = false
@@ -434,5 +436,6 @@ class restaurantlist : AppCompatActivity() {
             return view
         }
     }
+
 
 }
