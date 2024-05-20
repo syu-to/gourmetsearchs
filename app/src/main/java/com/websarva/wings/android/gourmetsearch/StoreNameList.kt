@@ -160,10 +160,10 @@ class StoreNameList : AppCompatActivity() {
                     //第4引数form用データの用意
                     val from = arrayOf("name")
                     //第5引数to用データ
-                    val to = intArrayOf(android.R.id.text1)
+                    val to = intArrayOf(R.id.searchitems)
                     //adapter作成
                     val adapter =
-                        SimpleAdapter(this@StoreNameList, alllist, android.R.layout.simple_list_item_activated_2, from, to)
+                        SimpleAdapter(this@StoreNameList, alllist, R.layout.list_item2, from, to)
                     storenameList.adapter = adapter
                     storenameList.onItemClickListener = ListItemclickListener()
                 } else {

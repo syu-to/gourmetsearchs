@@ -18,4 +18,5 @@
     <string name="KyeWord">キーワード入力</string>
     <string name="locationSearch">現在地からレストラン検索</string>
     <string name="storenamesearch">店名検索</string>
+    <string name="triangle">▼</string>
 </resources>

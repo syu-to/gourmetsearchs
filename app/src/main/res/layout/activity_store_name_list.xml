@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".StoreNameList">
 
+    <ImageView
+        android:id="@+id/storenamebackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/background"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="88dp" />
+
     <ListView
         android:id="@+id/storenamelist"
         android:layout_width="match_parent"

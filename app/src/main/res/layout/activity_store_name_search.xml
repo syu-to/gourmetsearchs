@@ -6,12 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".StoreNameSearch">
 
+    <ImageView
+        android:id="@+id/storeserchbackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/background"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="141dp" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="20dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/triangle"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/prefectures"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/prefectures" />
+
     <Spinner
         android:id="@+id/prefectures"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@android:color/holo_orange_dark"
+        android:backgroundTint="@color/black"
         android:spinnerMode="dialog"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -19,14 +40,18 @@
         app:layout_constraintTop_toBottomOf="@+id/KeywordText" />
 
     <EditText
+        android:textColorHint="#dcdcdc"
         android:id="@+id/KeywordText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="140dp"
+        android:backgroundTint="?attr/colorButtonNormal"
         android:ems="10"
         android:hint="@string/KyeWord"
         android:inputType="textPersonName"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,6 +59,7 @@
         android:id="@+id/prefecturesText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

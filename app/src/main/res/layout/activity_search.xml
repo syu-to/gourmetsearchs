@@ -6,12 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".SearchActivity">
 
+    <ImageView
+        android:id="@+id/restaurantsearchbackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/background"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="286dp" />
+
     <TextView
         android:id="@+id/genreTextView"
         android:layout_width="375dp"
         android:layout_height="50dp"
         android:text="@string/genre"
         android:textAlignment="center"
+        android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.555"
@@ -20,13 +30,15 @@
 
     <Spinner
         android:id="@+id/genre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="401dp"
+        android:layout_height="37dp"
         android:layout_marginTop="24dp"
-        android:backgroundTint="@android:color/holo_orange_dark"
+        android:layout_marginEnd="24dp"
+        android:backgroundTint="@android:color/black"
+        android:backgroundTintMode="src_atop"
         android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radiustext" />
 
@@ -42,12 +54,13 @@
 
     <Spinner
         android:id="@+id/radius"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@android:color/holo_orange_dark"
+        android:layout_width="398dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="136dp"
+        android:backgroundTint="@color/purple_500"
         android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.58"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -58,6 +71,7 @@
         android:layout_marginTop="4dp"
         android:text="@string/initial"
         android:textAlignment="center"
+        android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,9 +82,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/midnight"
+        android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/genreTextView" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="20dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/triangle"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/radius"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/radius" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="20dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/triangle"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/genreTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/genre" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

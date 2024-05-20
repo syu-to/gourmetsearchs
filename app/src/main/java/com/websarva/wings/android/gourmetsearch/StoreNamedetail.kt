@@ -178,6 +178,8 @@ class StoreNamedetail : AppCompatActivity() {
         }
         else
         {
+            var favoritebutton = findViewById<Button>(R.id.Shopfavorite)
+            favoritebutton.setVisibility(View.INVISIBLE)
             Snackbar.make(
                 ShopImage,
                 "データが存在しませんでした。",
